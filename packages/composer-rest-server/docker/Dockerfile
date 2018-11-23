@@ -16,7 +16,9 @@ FROM node:8-alpine
 ENV NPM_CONFIG_LOGLEVEL warn
 
 # Install the latest version by default.
-ARG VERSION=latest
+ARG VERSION=0.19.12
+
+ENV PM2_INS=5
 
 # Need to install extra dependencies for native modules.
 RUN deluser --remove-home node && \
@@ -39,7 +41,7 @@ ENV PATH /home/composer/.npm-global/bin:$PATH
 WORKDIR /home/composer
 
 # Run supervisor to start the application.
-CMD [ "pm2-docker", "composer-rest-server" ]
+CMD [ "pm2-docker", "composer-rest-server","-i ${PM2_INS" ]
 
 # Expose port 3000.
 EXPOSE 3000
