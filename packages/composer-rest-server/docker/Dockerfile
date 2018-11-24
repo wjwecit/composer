@@ -41,7 +41,8 @@ ENV PATH /home/composer/.npm-global/bin:$PATH
 WORKDIR /home/composer
 
 # Run supervisor to start the application.
-ENTRYPOINT [ "pm2-docker", "composer-rest-server","-i ${PM2_INS}" ]
+#ENTRYPOINT [ "pm2-docker", "composer-rest-server","-i ${PM2_INS}" ]
+ENTRYPOINT pm2-docker composer-rest-server -i ${PM2_INS}
 
 # Expose port 3000.
 EXPOSE 3000
